@@ -1,0 +1,17 @@
+[build]
+    functions = "netlify/functions"
+    publish = "public"
+
+
+[[redirects]]
+    from = "/api/*"
+    to = "/.netlify/functions/server/api/:splat"
+    status = 200
+    force = true
+
+
+[functions]
+    node_bundler = "esbuild"
+
+[build.environment]
+    NODE_VERSION = "22"

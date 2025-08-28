@@ -1,0 +1,51 @@
+GET https://yu1iadev.website/myip
+# Cache-Control: no-cache
+
+###
+GET http://localhost:8888
+
+###
+POST http://localhost:8888/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "doe@gmail.com",
+    "password": "123456"
+}
+
+###
+POST http://localhost:8888/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "yu1ia@gmail.com",
+    "password": "123456"
+}
+
+###
+
+GET http://localhost:8888/api/todos
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTc1NjIyMDQ3MiwiZXhwIjoxNzU2MzA2ODcyfQ.oUAZKBUbjt_xLjd8wuLoO_4u3eal-Sk-0M3cI1Xpflex
+
+###
+PATCH http://localhost:8888/api/todos/38
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTc1NjIyMDQ3MiwiZXhwIjoxNzU2MzA2ODcyfQ.oUAZKBUbjt_xLjd8wuLoO_4u3eal-Sk-0M3cI1Xpflex
+Content-Type: application/json
+
+{
+    "completed": 1
+}
+
+###
+DELETE  http://localhost:8888/api/todos/38
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTc1NjIyMDQ3MiwiZXhwIjoxNzU2MzA2ODcyfQ.oUAZKBUbjt_xLjd8wuLoO_4u3eal-Sk-0M3cI1Xpflex
+
+###
+POST  http://localhost:8888/api/todos
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTc1NjIyMDQ3MiwiZXhwIjoxNzU2MzA2ODcyfQ.oUAZKBUbjt_xLjd8wuLoO_4u3eal-Sk-0M3cI1Xpflex
+Content-Type: application/json
+
+{
+    "task": "Dry dishes"
+}
+
