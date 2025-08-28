@@ -19,17 +19,17 @@ Content-Type: application/json
 
 {
     "username": "yu1ia@gmail.com",
-    "password": "123456"
+    "password": "000000"
 }
 
 ###
 
 GET http://localhost:8888/api/todos
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTc1NjIyMDQ3MiwiZXhwIjoxNzU2MzA2ODcyfQ.oUAZKBUbjt_xLjd8wuLoO_4u3eal-Sk-0M3cI1Xpflex
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjcsImlhdCI6MTc1NjQwMzM1MywiZXhwIjoxNzU2NDg5NzUzfQ.GXv5-5pQEKE22YkuC5iojQR_2yjzGbEvkPiFZhIVbtA
 
 ###
-PATCH http://localhost:8888/api/todos/38
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTc1NjIyMDQ3MiwiZXhwIjoxNzU2MzA2ODcyfQ.oUAZKBUbjt_xLjd8wuLoO_4u3eal-Sk-0M3cI1Xpflex
+PATCH http://localhost:8888/api/todos/157
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjcsImlhdCI6MTc1NjQwMzM1MywiZXhwIjoxNzU2NDg5NzUzfQ.GXv5-5pQEKE22YkuC5iojQR_2yjzGbEvkPiFZhIVbtA
 Content-Type: application/json
 
 {
@@ -37,15 +37,41 @@ Content-Type: application/json
 }
 
 ###
-DELETE  http://localhost:8888/api/todos/38
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTc1NjIyMDQ3MiwiZXhwIjoxNzU2MzA2ODcyfQ.oUAZKBUbjt_xLjd8wuLoO_4u3eal-Sk-0M3cI1Xpflex
+DELETE  http://localhost:8888/api/todos/157
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjcsImlhdCI6MTc1NjQwMzM1MywiZXhwIjoxNzU2NDg5NzUzfQ.GXv5-5pQEKE22YkuC5iojQR_2yjzGbEvkPiFZhIVbtA
 
 ###
 POST  http://localhost:8888/api/todos
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTcsImlhdCI6MTc1NjIyMDQ3MiwiZXhwIjoxNzU2MzA2ODcyfQ.oUAZKBUbjt_xLjd8wuLoO_4u3eal-Sk-0M3cI1Xpflex
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjcsImlhdCI6MTc1NjQwMzM1MywiZXhwIjoxNzU2NDg5NzUzfQ.GXv5-5pQEKE22YkuC5iojQR_2yjzGbEvkPiFZhIVbtA
 Content-Type: application/json
 
 {
     "task": "Dry dishes"
 }
 
+###
+POST https://todosbackend.netlify.app/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "doe@gmail.com",
+    "password": "123456"
+}
+
+###
+POST https://todosbackend.netlify.app/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "doe@gmail.com",
+    "password": "123456"
+}
+
+###
+
+GET https://todosbackend.netlify.app/api/todos/
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsImlhdCI6MTc1NjM5NDA5NSwiZXhwIjoxNzU2NDgwNDk1fQ.8vIeFWf9QXnwFTI_7KHQH_kDh0CObCe9G3E-pXPUGP8
+
+###
+DELETE http://todosbackend.netlify.app/api/todos/3
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsImlhdCI6MTc1NjM5NDA5NSwiZXhwIjoxNzU2NDgwNDk1fQ.8vIeFWf9QXnwFTI_7KHQH_kDh0CObCe9G3E-pXPUGP8

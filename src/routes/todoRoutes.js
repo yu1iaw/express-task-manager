@@ -19,10 +19,10 @@ router.post('/', async (req, res) => {
     const insertTodo = await sql`
         INSERT INTO todos(user_id, task)
         VALUES(${req.userId}, ${task})
-        RETURNING id;
+        RETURNING id, task, completed;
     `;
 
-    res.json({ id: insertTodo[0].id, task, completed: 0 });
+    res.json({ message: { 'created_todo': insertTodo[0] ?? null } });
 })
 
 
@@ -34,10 +34,11 @@ router.patch('/:id', async (req, res) => {
         UPDATE todos
         SET completed = ${completed}
         WHERE user_id = ${req.userId}
-        AND id = ${id};
+        AND id = ${id}
+        RETURNING id, task, completed;
     `;
 
-    res.json({ message: "Todo completed" });
+    res.json({ message: { 'updated_todo': updateTodo[0] ?? null } });
 })
 
 router.delete('/:id', async (req, res) => {
@@ -46,10 +47,11 @@ router.delete('/:id', async (req, res) => {
     const deleteTodo = await sql`
         DELETE FROM todos
         WHERE user_id = ${req.userId}
-        AND id = ${id};
+        AND id = ${id}
+        RETURNING id, task, completed;
     `;
 
-    res.json({ message: "Todo deleted" });
+    res.json({ message: { 'deleted_todo': deleteTodo[0] ?? null } });
 })
 
 
