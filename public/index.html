@@ -203,7 +203,9 @@
                 gravity: "top", // `top` or `bottom`
                 position: "center", // `left`, `center` or `right`
                 style: {
-                    background: "linear-gradient(to top,var(--gradient-start), #D984A9)"
+                    background: "radial-gradient(49% 81% at 45% 47%, #BE0462D6 0%, #B4035CD6 0%, #073AFF00 100%),radial-gradient(113% 91% at 17% -2%, #FF5A00FF 1%, #FF000000 99%),radial-gradient(142% 91% at 83% 7%, #FFDB00FF 1%, #FF000000 99%),radial-gradient(142% 91% at -6% 74%, #FF0049FF 1%, #FF000000 99%),radial-gradient(142% 91% at 111% 84%, #FF7000FF 0%, #FF0000FF 100%)",
+                    fontWeight: "500",
+                    textShadow: "2px 1px brown"
                 },
             }).showToast();
         }
@@ -261,12 +263,17 @@
             const response = await fetch(apiBase + 'todos', {
                 headers: { 'Authorization': token }
             })
+            if (!response.ok) {
+                throw Error(response.statusText)
+            }
+
             const todosData = await response.json()
             todos = todosData
+        } catch (error) {
+            console.error(error.message);
+        } finally {
             isLoading = false
             renderTodos()
-        } catch (error) {
-            console.log(error);
         }
     }
 
@@ -331,7 +338,10 @@
                 gravity: "top",
                 position: "center",
                 style: {
-                    background: "linear-gradient(to top, var(--gradient-start), #D984A9)"
+                    // background: "linear-gradient(to top, var(--gradient-start), #D984A9)"
+                    background: "radial-gradient(49% 81% at 45% 47%, #BE0462D6 0%, #B4035CD6 0%, #073AFF00 100%),radial-gradient(113% 91% at 17% -2%, #FF5A00FF 1%, #FF000000 99%),radial-gradient(142% 91% at 83% 7%, #FFDB00FF 1%, #FF000000 99%),radial-gradient(142% 91% at -6% 74%, #FF0049FF 1%, #FF000000 99%),radial-gradient(142% 91% at 111% 84%, #FF7000FF 0%, #FF0000FF 100%)",
+                    fontWeight: "500",
+                    textShadow: "2px 1px brown"
                 },
             }).showToast();
         }
@@ -339,7 +349,7 @@
         addBtn.setAttribute('disabled', 'true');
 
         try {
-            await fetch(apiBase + 'todos', {
+            const response = await fetch(apiBase + 'todos', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -347,10 +357,12 @@
                 },
                 body: JSON.stringify({ task })
             })
+            if (response.status === 401) throw Error(await response.json());
+
             todoInput.value = ''
             fetchTodos()
         } catch (error) {
-            console.log(error);
+            console.error(error.message);
             addBtn.removeAttribute("disabled");
         }
     }

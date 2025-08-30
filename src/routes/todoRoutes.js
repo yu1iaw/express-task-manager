@@ -4,25 +4,32 @@ import sql from '../db.js';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const todos = await sql`
+    try {
+        const todos = await sql`
         SELECT * FROM todos
         WHERE user_id = ${req.userId};
     `;
-
-    res.json(todos);
+        res.json(todos);
+    } catch (error) {
+        res.sendStatus(503);
+    }
 })
 
 
 router.post('/', async (req, res) => {
     const { task } = JSON.parse(req.body);
 
-    const insertTodo = await sql`
-        INSERT INTO todos(user_id, task)
-        VALUES(${req.userId}, ${task})
-        RETURNING id, task, completed;
-    `;
+    try {
+        const insertTodo = await sql`
+            INSERT INTO todos(user_id, task)
+            VALUES(${req.userId}, ${task})
+            RETURNING id, task, completed;
+        `;
 
-    res.json({ message: { 'created_todo': insertTodo[0] ?? null } });
+        res.json({ message: { 'created_todo': insertTodo[0] ?? null } });
+    } catch (error) {
+        res.status(401).json(`${error.name}: ${error.message}`);
+    }
 })
 
 
