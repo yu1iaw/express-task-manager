@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
 
         res.json({ message: { 'created_todo': insertTodo[0] ?? null } });
     } catch (error) {
-        res.status(401).json(`${error.name}: ${error.message}`);
+        res.status(401).json({ message: `${error.name}: ${error.message}` });
     }
 })
 
